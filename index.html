@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع برامجي وفيديوهاتي</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .tabs {
+            margin: 20px 0;
+        }
+        .tab-button {
+            background-color: #e9ecef;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .tab-button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        #searchPrograms, #searchVideos {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            display: none;
+        }
+        li.show {
+            display: block;
+        }
+        a {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        a:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بك في موقع برامجي وفيديوهاتي</h1>
+        <p>هنا تجد روابط برامجي وفيديوهاتي المفضلة. تحميل/مشاهدة على مسؤوليتك الخاصة.</p>
+    </header>
+    
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('programs')">البرامج</button>
+        <button class="tab-button" onclick="showTab('videos')">الفيديوهات</button>
+    </div>
+    
+    <div id="programs" class="tab-content active">
+        <h2>قائمة البرامج</h2>
+        <input type="text" id="searchPrograms" placeholder="ابحث عن برنامج...">
+        <ul id="programList">
+            <li class="show"><a href="https://adescargar.online/">موقع 1 - تحمل برامج الهاتف المدفوعه</a></li>
+            <li class="show"><a href="https://ankergames.net/" target="_blank">موقع 2 - تحمل العاب الكمبيوتر المدفوعه مجانا</a></li>
+            <li class="show"><a href="https://youtube.com/@vo3tex-tech?si=JYQyiBf_oEdVo5t4" target="_blank">اشترك</a></li>
+
+            <!-- أضف روابطك الحقيقية هنا -->
+        </ul>
+    </div>
+    
+    <div id="videos" class="tab-content">
+        <h2>قائمة الفيديوهات</h2>
+        <input type="text" id="searchVideos" placeholder="ابحث عن فيديو...">
+        <ul id="videoList">
+            <li class="show"><a href="https://youtube.com/shorts/75ZslKtKX9c?si=Hm_zMn7fMERg0ilh">فيديو 1 - اقوي فديو تهكير</a></li>
+            <li class="show"><a href="https://youtube.com/shorts/CtohqNL2ivA?si=DDuWlluTQQxcTSh8">فيديو 2 - تغيير شكل الماوس</a></li>
+            <li class="show"><a href="https://youtube.com/shorts/4Q66HK3Kuow?si=D7LxLauw5T8kVMMW" target="_blank">فيديو 3 - عمل كيو ار كود </a></li>
+            <!-- أضف روابطك الحقيقية هنا -->
+        </ul>
+    </div>
+    
+    <footer>
+        <p>© 2023 موقع برامجي وفيديوهاتي. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // وظيفة التبديل بين الtabs
+        function showTab(tabId) {
+            // إخفاء جميع الtabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // إزالة النشاط من جميع الأزرار
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // إظهار الtab المحدد
+            document.getElementById(tabId).classList.add('active');
+            
+            // تفعيل الزر المقابل
+            event.target.classList.add('active');
+        }
+
+        // وظيفة البحث للبرامج
+        const searchPrograms = document.getElementById('searchPrograms');
+        const programList = document.getElementById('programList');
+        const programItems = programList.getElementsByTagName('li');
+
+        searchPrograms.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            for (let i = 0; i < programItems.length; i++) {
+                const text = programItems[i].textContent.toLowerCase();
+                if (text.includes(query)) {
+                    programItems[i].classList.add('show');
+                } else {
+                    programItems[i].classList.remove('show');
+                }
+            }
+        });
+
+        // وظيفة البحث للفيديوهات
+        const searchVideos = document.getElementById('searchVideos');
+        const videoList = document.getElementById('videoList');
+        const videoItems = videoList.getElementsByTagName('li');
+
+        searchVideos.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            for (let i = 0; i < videoItems.length; i++) {
+                const text = videoItems[i].textContent.toLowerCase();
+                if (text.includes(query)) {
+                    videoItems[i].classList.add('show');
+                } else {
+                    videoItems[i].classList.remove('show');
+                }
+            }
+        });
+
+        // تأثير النقر (اختياري)
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('تم النقر على: ' + this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
